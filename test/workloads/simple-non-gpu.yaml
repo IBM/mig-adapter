@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: migadapter-test-workload
+  labels:
+    app: migadapter-test-workload
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: migadapter-test-workload
+  template:
+    metadata:
+      labels:
+        app: migadapter-test-workload
+    spec:
+      containers:
+      - name: migadapter-test-workload
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64G"
+            cpu: "12"
+          limits:
+            memory: "64G"
+            cpu: "12"
