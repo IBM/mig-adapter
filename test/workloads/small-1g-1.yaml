@@ -4,7 +4,7 @@ metadata:
   labels:
     app: migadapter
     component: small-workload
-  name: migadapter-small
+  name: workload-1g-1
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
@@ -12,16 +12,18 @@ spec:
   selector:
     matchLabels:
       app: migadapter
-      component: small-workload
+      component: small-workload-1g-1
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
         app: migadapter
-        component: small-workload
+        component: small-workload-1g-1
         placement: nvidia-a100
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker1.vc14ocpc1.turbo.rtp.raleigh.ibm.com
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
